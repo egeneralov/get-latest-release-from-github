@@ -21,10 +21,10 @@ jobs:
         uses: actions/checkout@master
       
       - name: build linux
-        run: GOOS=linux go build -a -v -installsuffix cgo -ldflags="-w -s" -o get-latest-release-from-github-linux-amd64 .
+        run: GOOS=linux go build -a -v -installsuffix cgo -ldflags="-w -s" -o get-latest-release-from-github-linux .
       
       - name: build darwin
-        run: GOOS=darwin go build -a -v -installsuffix cgo -ldflags="-w -s" -o get-latest-release-from-github-darwin-amd64 .
+        run: GOOS=darwin go build -a -v -installsuffix cgo -ldflags="-w -s" -o get-latest-release-from-github-darwin .
       
       - name: Create Release
         id: create_release
