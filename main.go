@@ -1,28 +1,29 @@
 package main
 
 import (
-  "flag"
 	"context"
+	"flag"
 	"fmt"
 	"github.com/google/go-github/v31/github"
 )
 
 var (
-  client = github.NewClient(nil)
-	ctx = context.Background()
+	client  = github.NewClient(nil)
+	ctx     = context.Background()
+	org     string
+	project string
 
-	org = "elastic"
-	project = "elasticsearch"
+	err           error
+	latestRelease *github.RepositoryRelease
 )
 
 func main() {
-  // func StringVar(p *string, name string, value string, usage string)
-  flag.StringVar(&org, "o", "elastic", "github user/org name")
-  flag.StringVar(&project, "p", "elasticsearch", "repository name")
+	flag.StringVar(&org, "o", "egeneralov", "github user/org name")
+	flag.StringVar(&project, "p", "get-latest-release-from-github", "repository name")
 	flag.Parse()
-	
-	latestRelease, _, err := client.Repositories.GetLatestRelease(ctx, org, project)
-  
+
+	latestRelease, _, err = client.Repositories.GetLatestRelease(ctx, org, project)
+
 	if err != nil {
 		panic(err)
 	}
